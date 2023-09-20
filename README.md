@@ -1,3 +1,36 @@
+# DNSCrypt Proxy for personalDNSfilter (pDNSf) for Android (Magisk Module) [Test]
+
+### Changes made to the main project (quindecim/dnscrypt-proxy-android)
+
+- Forward DNS requests to 127.0.0.1:5300 (pDNSf listens on port 5300), instead of 127.0.0.1:5354. (post-fs-data.sh)  
+    - pDNSf will forward the requests to DNSCrypt Proxy
+- Disable module update, to prevent updating to original project. (module.prop and remove update.json)
+
+### Configuring pDNSf
+
+Settings change over default settings.
+
+1. Enable 'DNS proxy mode withour local VPN' in side panel.
+2. Disable 'Root mode without local VPN' in side panel.
+3. In 'Edit configuration file' in side panel,  
+    - Change 'manageDNSCryptProxy' to 'true'.
+4. Enable 'Disable DNS server discovery' in 'DNS server configuration'.
+5. Disable/delete all DNS servers in the list under 'DNS server configuration'. 
+6. Add following DNS Server - UDP, 127.0.0.1, 5354  
+Or in 'Text based edit mode', remove all lines, and add  
+'`[127.0.0.1]::5354::UDP`'  
+    - Remember to tap on check mark in bottom right corner, to save the changes.
+7. 'Close' pDNSf.
+8. Open pDNSf app.
+    - It may ask for root permission, 'Grant' it.
+
+pDNSf should now be resolving the DNS requests with DNSCrypt.
+
+
+___
+___
+
+
 # DNSCrypt Proxy 2 for Android
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/d3cim/dnscrypt-proxy-android?style=for-the-badge)
